@@ -8,13 +8,17 @@ Para utilizar este recurso, é necessário um conhecimento básico em alguma lin
 Campo           | Tipo          | Descrição
 -------------   | ------------- | ------------------
 afiliado        | Numérico      | ID do afiliado que originou a venda ( 0 no caso de venda sem afiliado )
+nome_afiliado   | Alfanumérico  | Nome do afiliado que originou a venda ( Vazio no caso de venda sem afiliado )
+email_afiliado  | Alfanumérico  | Email do afiliado que originou a venda ( Vazio no caso de venda sem afiliado )
 fatura          | Numérico      | ID da compra 
 utm_source      | Alfanumérico  | Informado pelo produtor/afiliado no link de origem da venda ( Vazio, se não informado )
 utm_medium      | Alfanumérico  | Informado pelo produtor/afiliado no link de origem da venda ( Vazio, se não informado )
 utm_content     | Alfanumérico  | Informado pelo produtor/afiliado no link de origem da venda ( Vazio, se não informado )
 pxidfb          | Alfanumérico  | Id do pixel do facebook informado pelo produtor/afiliado no link de origem da venda.  ( Vazio, se não informado )
 pxvlfb          | Alfanumérico  | Valor da conversão. Informado pelo produtor/afiliado no link de origem da venda  ( Vazio, se não informado )
+nome_comprador | Alfanumérico  | Nome do comprador
 email_comprador | Alfanumérico  | E-mail do comprador
+
 
 # Exemplos de Utilização
 
