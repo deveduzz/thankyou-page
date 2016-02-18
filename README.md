@@ -18,6 +18,7 @@ pxidfb          | Alfanumérico  | Id do pixel do facebook informado pelo produt
 pxvlfb          | Alfanumérico  | Valor da conversão. Informado pelo produtor/afiliado no link de origem da venda  ( Vazio, se não informado )
 nome_comprador | Alfanumérico  | Nome do comprador
 email_comprador | Alfanumérico  | E-mail do comprador
+url_boleto | Alfanumérico  | URL do boleto ( Parametro enviado apenas p/ compras com boleto )
 
 
 # Exemplos de Utilização
@@ -35,6 +36,7 @@ email_comprador | Alfanumérico  | E-mail do comprador
 	$pxvlfb        = (isset($_POST['pxvlfb'])  && is_numeric($_POST['pxvlfb'])) ? $_POST['pxvlfb'] : '';
 	$produto       = (isset($_POST['produto']) && is_numeric($_POST['produto'])) ? $_POST['produto'] : 0;
 	$eml_comprador = (isset($_POST['email_comprador'])) ? $_POST['email_comprador'] : '';
+	$url_boleto = (isset($_POST['$url_boleto'])) ? $_POST['$url_boleto'] : '';
 
 	if( $afiliado == '815959' )
 	{
@@ -50,7 +52,12 @@ email_comprador | Alfanumérico  | E-mail do comprador
 	if( $utm_source == 'facebook' )
 	{
 		//Redireciona usuário para outra página ( exemplo )
-	}	
+	}
+	
+	if( $url_boleto != '' )
+	{
+		echo '<a href="'.$url_boleto.'" >Clique aqui para abrir o boleto</a>';
+	}
 ?>
 ```
 Qualquer dúvida favor encaminhar para [suporte@eduzz.com](mailto:suporte@eduzz.com)
