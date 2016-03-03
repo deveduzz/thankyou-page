@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-light.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -29,14 +29,14 @@
       </header>
       <section>
         <h1>
-<a id="página-de-obrigado" class="anchor" href="#p%C3%A1gina-de-obrigado" aria-hidden="true"><span class="octicon octicon-link"></span></a>Página de obrigado</h1>
+<a id="página-de-obrigado" class="anchor" href="#p%C3%A1gina-de-obrigado" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Página de obrigado</h1>
 
 <p>Vendo a necessidade de alguns produtores em criar um fluxo de tratamento diferenciado baseado na origem da venda, a Eduzz envia via POST alguns dados da compra, para que o produtor tome algumas decisões.</p>
 
 <p>Para utilizar este recurso, é necessário um conhecimento básico em alguma linguagem de programação.</p>
 
 <h1>
-<a id="dados-enviados" class="anchor" href="#dados-enviados" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dados enviados</h1>
+<a id="dados-enviados" class="anchor" href="#dados-enviados" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dados enviados</h1>
 
 <table>
 <thead>
@@ -51,6 +51,16 @@
 <td>afiliado</td>
 <td>Numérico</td>
 <td>ID do afiliado que originou a venda ( 0 no caso de venda sem afiliado )</td>
+</tr>
+<tr>
+<td>nome_afiliado</td>
+<td>Alfanumérico</td>
+<td>Nome do afiliado que originou a venda ( Vazio no caso de venda sem afiliado )</td>
+</tr>
+<tr>
+<td>email_afiliado</td>
+<td>Alfanumérico</td>
+<td>Email do afiliado que originou a venda ( Vazio no caso de venda sem afiliado )</td>
 </tr>
 <tr>
 <td>fatura</td>
@@ -83,18 +93,28 @@
 <td>Valor da conversão. Informado pelo produtor/afiliado no link de origem da venda  ( Vazio, se não informado )</td>
 </tr>
 <tr>
+<td>nome_comprador</td>
+<td>Alfanumérico</td>
+<td>Nome do comprador</td>
+</tr>
+<tr>
 <td>email_comprador</td>
 <td>Alfanumérico</td>
 <td>E-mail do comprador</td>
+</tr>
+<tr>
+<td>url_boleto</td>
+<td>Alfanumérico</td>
+<td>URL do boleto ( Parametro enviado apenas p/ compras com boleto )</td>
 </tr>
 </tbody>
 </table>
 
 <h1>
-<a id="exemplos-de-utilização" class="anchor" href="#exemplos-de-utiliza%C3%A7%C3%A3o" aria-hidden="true"><span class="octicon octicon-link"></span></a>Exemplos de Utilização</h1>
+<a id="exemplos-de-utilização" class="anchor" href="#exemplos-de-utiliza%C3%A7%C3%A3o" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Exemplos de Utilização</h1>
 
 <h3>
-<a id="exemplo-php" class="anchor" href="#exemplo-php" aria-hidden="true"><span class="octicon octicon-link"></span></a>Exemplo PHP</h3>
+<a id="exemplo-php" class="anchor" href="#exemplo-php" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Exemplo PHP</h3>
 
 <pre><code>&lt;?php
     $afiliado      = (isset($_POST['afiliado']) &amp;&amp; is_numeric($_POST['afiliado'])) ? $_POST['afiliado'] : 0;
@@ -107,6 +127,7 @@
     $pxvlfb        = (isset($_POST['pxvlfb'])  &amp;&amp; is_numeric($_POST['pxvlfb'])) ? $_POST['pxvlfb'] : '';
     $produto       = (isset($_POST['produto']) &amp;&amp; is_numeric($_POST['produto'])) ? $_POST['produto'] : 0;
     $eml_comprador = (isset($_POST['email_comprador'])) ? $_POST['email_comprador'] : '';
+    $url_boleto = (isset($_POST['$url_boleto'])) ? $_POST['$url_boleto'] : '';
 
     if( $afiliado == '815959' )
     {
@@ -122,7 +143,12 @@
     if( $utm_source == 'facebook' )
     {
         //Redireciona usuário para outra página ( exemplo )
-    }   
+    }
+
+    if( $url_boleto != '' )
+    {
+        echo '&lt;a href="'.$url_boleto.'" &gt;Clique aqui para abrir o boleto&lt;/a&gt;';
+    }
 ?&gt;
 </code></pre>
 
